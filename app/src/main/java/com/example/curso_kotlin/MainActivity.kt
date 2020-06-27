@@ -1,6 +1,8 @@
 package com.example.curso_kotlin
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -31,12 +33,16 @@ class MainActivity : AppCompatActivity() {
             if(et_username.text.toString() == "admin") {
                 val intent = Intent(this, SecondActivity::class.java)
 
+                guardar(et_username.text.toString(), et_password.text.toString(),
+                    "Brian", "Rodríguez",
+                    "10020030", "Av. Peru #455")
+/*
                 intent.putExtra(SecondActivity.KEY_USUARIO, et_username.text.toString())
                 intent.putExtra(SecondActivity.KEY_PASSWORD, et_password.text.toString() )
                 intent.putExtra(SecondActivity.KEY_NAME, "Brian")
                 intent.putExtra(SecondActivity.KEY_LASTNAME, "Rodríguez")
                 intent.putExtra(SecondActivity.KEY_DNI, "10020030")
-                intent.putExtra(SecondActivity.KEY_ADDRESS, "Av. Peru 455")
+                intent.putExtra(SecondActivity.KEY_ADDRESS, "Av. Peru 455")*/
 
                 startActivity(intent)
             }else {
@@ -50,6 +56,19 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("usuario", "Everis")
             startActivity(intent)
         }
+    }
+
+    private fun guardar(usuario:String, password:String, name:String, lastname:String, dni:String, address:String  ) {
+        val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+
+        editor.putString(SecondActivity.KEY_USUARIO, usuario)
+        editor.putString(SecondActivity.KEY_PASSWORD, password)
+        editor.putString(SecondActivity.KEY_NAME, name)
+        editor.putString(SecondActivity.KEY_LASTNAME, lastname)
+        editor.putString(SecondActivity.KEY_DNI, dni)
+        editor.putString(SecondActivity.KEY_ADDRESS, address)
+        editor.commit()
     }
 
     override fun onStart() {

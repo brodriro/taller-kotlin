@@ -1,6 +1,9 @@
 package com.example.curso_kotlin
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
@@ -25,7 +28,7 @@ class SecondActivity : AppCompatActivity() {
     var lastname : String? = null
     var address : String? =null
 
-    data class User(val user:String, val password:String, val dni:String, val nombre:String, val lastname:String, val address:String )
+    data class User(val user:String?, val password:String?, val dni:String?, val nombre:String?, val lastname:String?, val address:String? )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,18 +46,35 @@ class SecondActivity : AppCompatActivity() {
             Snackbar.make(view, "El usuario es ${user.nombre} ${user.lastname}", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
     }
 
     private fun createUser() : User {
+
+        usuario = obtener(KEY_USUARIO)
+        password = obtener(KEY_PASSWORD)
+        nombre = obtener(KEY_NAME)
+        lastname = obtener(KEY_LASTNAME)
+        dni = obtener(KEY_DNI)
+        address = obtener(KEY_ADDRESS)
+
         val user = User(
+            usuario, password, dni, nombre, lastname, address
+        )
+        /*val user = User(
             intent.getStringExtra(KEY_USUARIO),
             intent.getStringExtra(KEY_PASSWORD),
             intent.getStringExtra(KEY_DNI),
             intent.getStringExtra(KEY_NAME),
             intent.getStringExtra(KEY_LASTNAME),
             intent.getStringExtra(KEY_ADDRESS)
-        )
+        )*/
         return user
+    }
+
+    private fun obtener(key: String) : String? {
+        val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
+        return sharedPref.getString(key, "none")
     }
 
 }
