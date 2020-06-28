@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener{view ->
             if(et_username.text.toString() == "admin") {
-                val intent = Intent(this, SecondActivity::class.java)
+                val intent = Intent(this, FeedActivity::class.java)
 
-                guardar(et_username.text.toString(), et_password.text.toString(),
+              /*  guardar(et_username.text.toString(), et_password.text.toString(),
                     "Brian", "Rodríguez",
-                    "10020030", "Av. Peru #455")
+                    "10020030", "Av. Peru #455")*/
 /*
                 intent.putExtra(SecondActivity.KEY_USUARIO, et_username.text.toString())
                 intent.putExtra(SecondActivity.KEY_PASSWORD, et_password.text.toString() )
