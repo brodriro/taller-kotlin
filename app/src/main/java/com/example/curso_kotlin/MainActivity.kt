@@ -14,6 +14,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.item_detail.*
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,17 +59,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun guardarJson(usuario:String, password:String, name:String, lastname:String, dni:String, address:String  ) {
+        val json = JSONObject()
+        json.put(SecondActivity.KEY_USUARIO, usuario)
+        json.put(SecondActivity.KEY_PASSWORD, password)
+        json.put(SecondActivity.KEY_NAME, name)
+        json.put(SecondActivity.KEY_LASTNAME, lastname)
+        json.put(SecondActivity.KEY_DNI, dni)
+        json.put(SecondActivity.KEY_ADDRESS, address)
+        val sf = mSharedPreferences(this)
+        sf.put("session", json.toString())
+        sf.save()
+    }
     private fun guardar(usuario:String, password:String, name:String, lastname:String, dni:String, address:String  ) {
-        val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPref.edit()
+        guardarJson(et_username.text.toString(), et_password.text.toString(),
+            "Brian", "Rodríguez",
+            "10020030", "Av. Peru #455")
 
-        editor.putString(SecondActivity.KEY_USUARIO, usuario)
+       // val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
+       // val editor: SharedPreferences.Editor = sharedPref.edit()
+
+       val sf = mSharedPreferences(this)
+        sf.put(SecondActivity.KEY_USUARIO, usuario)
+        sf.put(SecondActivity.KEY_PASSWORD, password)
+        sf.put(SecondActivity.KEY_NAME, name)
+        sf.put(SecondActivity.KEY_LASTNAME, lastname)
+        sf.put(SecondActivity.KEY_DNI, dni)
+        sf.put(SecondActivity.KEY_ADDRESS, address)
+        sf.save()
+
+       /* editor.putString(SecondActivity.KEY_USUARIO, usuario)
         editor.putString(SecondActivity.KEY_PASSWORD, password)
         editor.putString(SecondActivity.KEY_NAME, name)
         editor.putString(SecondActivity.KEY_LASTNAME, lastname)
         editor.putString(SecondActivity.KEY_DNI, dni)
         editor.putString(SecondActivity.KEY_ADDRESS, address)
-        editor.commit()
+        editor.commit()*/
     }
 
     override fun onStart() {

@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.item_detail.*
+import org.json.JSONObject
 
 class SecondActivity : AppCompatActivity() {
 
@@ -35,8 +37,11 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         setSupportActionBar(toolbar)
 
-        val user : User = createUser();
-
+        val user : User? = createUser();
+        if( user == null)  {
+            Toast.makeText(this, "No se logró obtener el usuario", Toast.LENGTH_SHORT).show()
+            return
+        }
         item_detail_username.text = user.nombre
         item_detail_lastname.text = user.lastname
         item_detail_dni.text = user.dni
@@ -49,14 +54,27 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
-    private fun createUser() : User {
-
+    private fun createUser() : User? {
+/*
         usuario = obtener(KEY_USUARIO)
         password = obtener(KEY_PASSWORD)
         nombre = obtener(KEY_NAME)
         lastname = obtener(KEY_LASTNAME)
         dni = obtener(KEY_DNI)
-        address = obtener(KEY_ADDRESS)
+        address = obtener(KEY_ADDRESS)*/
+
+        val mShared  = mSharedPreferences(this)
+        val session = mShared.getKey("session") ?: return null
+
+        val sessionObj = JSONObject(session)
+
+        usuario = sessionObj.getString(KEY_USUARIO)
+        password = sessionObj.getString(KEY_PASSWORD)
+        nombre = sessionObj.getString(KEY_NAME)
+        lastname = sessionObj.getString(KEY_LASTNAME)
+        dni = sessionObj.getString(KEY_DNI)
+        address = sessionObj.getString(KEY_ADDRESS)
+
 
         val user = User(
             usuario, password, dni, nombre, lastname, address
@@ -73,8 +91,9 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun obtener(key: String) : String? {
-        val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
-        return sharedPref.getString(key, "none")
+        //val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
+        //return sharedPref.getString(key, "none")
+        return mSharedPreferences(this).getKey(key)
     }
 
 }
