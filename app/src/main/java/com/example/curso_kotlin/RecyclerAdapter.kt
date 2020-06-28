@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_main.view.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
@@ -25,6 +26,13 @@ class RecyclerAdapter(private val data: ArrayList<Feed>) :  RecyclerView.Adapter
         val feed : Feed = this.data[position]
         holder.itemView.item_detail_username.text = feed.username
         holder.itemView.item_detail_lastname.text = feed.lastname
+
+        
+        Picasso.get()
+            .load(feed.image)
+            .resize(100,100)
+            .centerCrop()
+            .into(holder.itemView.item_detail_image)
 
         //GLIDE O PICASSO PARA IMAGEVIEW
     }

@@ -16,13 +16,13 @@ class FeedActivity : AppCompatActivity() {
 
 
         val feedList = ArrayList<Feed>()
-        feedList.add(Feed("Brian", "Rodriguez"))
-        feedList.add(Feed("Arturo", "Ulloa"))
-        feedList.add(Feed("Cesar", "Heladio"))
-        feedList.add(Feed("Henrry", "Wong"))
-        feedList.add(Feed("Rebeca", "Días"))
-        feedList.add(Feed("Gustavo", "Perez"))
-        feedList.add(Feed("Wilson", "Vargas"))
+        feedList.add(Feed("Brian", "Rodriguez", "https://img2.freepng.es/20180623/iqh/kisspng-computer-icons-avatar-social-media-blog-font-aweso-avatar-icon-5b2e99c40ce333.6524068515297806760528.jpg"))
+        feedList.add(Feed("Arturo", "Ulloa", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPla3rTBqTsLRZLSyj7Zv_DV_WLc6LWwZnlw&usqp=CAU"))
+        feedList.add(Feed("Cesar", "Heladio", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSerOjbOByfQamF_J_CY4O691ynZQLRnmcytg&usqp=CAU"))
+        feedList.add(Feed("Henrry", "Wong", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIpIlh3AtO_FIfEIBARgn7F9R9CQqvMzlFBw&usqp=CAU"))
+        feedList.add(Feed("Rebeca", "Días", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLaoiVChJYmLSdfsWtgKL_deeSguvjFYeHqw&usqp=CAU"))
+        feedList.add(Feed("Gustavo", "Perez", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTTrtbQWAUbo97OQOHKopnMNwKh5lDBnlzpNw&usqp=CAU"))
+        feedList.add(Feed("Wilson", "Vargas","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfOhY4yKyXrGIKZJCyuZ6heQeulfsgZypN-Q&usqp=CAU"))
 
         adapter = RecyclerAdapter(feedList)
         linearLayoutManager = LinearLayoutManager(this)
