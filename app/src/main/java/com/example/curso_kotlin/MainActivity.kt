@@ -12,13 +12,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.curso_kotlin.network.Repository
 import com.example.curso_kotlin.network.UserResponse
+import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.android.synthetic.main.segment_profile.*
+import kotlinx.coroutines.*
 import org.json.JSONObject
 import retrofit2.HttpException
 
@@ -70,7 +69,9 @@ class MainActivity : AppCompatActivity() {
     private fun callService() {
         val service = Repository.RetrofitRepository.getService()
 
-        CoroutineScope(Dispatchers.IO).launch {
+        //GlobalScope.launch(Dispatchers.IO)
+        //CoroutineScope(Dispatchers.IO).launch
+        GlobalScope.launch(Dispatchers.IO) {
             val response =  service.getProfile()
 
             withContext(Dispatchers.Main) {
@@ -81,9 +82,7 @@ class MainActivity : AppCompatActivity() {
                     if(response.isSuccessful) {
 
                         val user : UserResponse?  = response.body()
-                        if( user != null) {
-                            Toast.makeText(this@MainActivity, "Usuario: ${user.name} tiene ${user.social.friends} amigos", Toast.LENGTH_LONG).show()
-                        }
+                        if( user != null) updateInfo(user)
                     }else{
                         Toast.makeText(this@MainActivity, "Error ${response.code()}", Toast.LENGTH_LONG).show()
                     }
@@ -92,6 +91,22 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun updateInfo(user: UserResponse) {
+        if(user.image.isNotEmpty()){
+            Picasso.get().load(user.image).into(profile_image)
+        }
+
+        profile_fullname.text = String.format("%s %s", user.name, user.lastname)
+        profile_email.text = user.email
+        profile_years.text = user.age
+        profile_location.text = user.location
+        profile_occupation.text = user.occupation
+        profile_likes.text = user.social.likes.toString()
+        profile_posts.text = user.social.posts.toString()
+        profile_shares.text = user.social.shares.toString()
+        profile_friends.text = user.social.shares.toString()
     }
 
     private fun guardarJson(usuario:String, password:String, name:String, lastname:String, dni:String, address:String  ) {

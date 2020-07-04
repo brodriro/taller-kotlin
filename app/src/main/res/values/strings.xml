@@ -17,4 +17,15 @@
     <string name="item_detail_dni_usuario">DNI</string>
     <string name="et_username">Usuario</string>
     <string name="text_login_button">Ingresar</string>
+
+    <string name="civ_transition">circleImageTransition</string>
+    <string name="profile_social_likes">Likes</string>
+    <string name="profile_social_metrics">-</string>
+    <string name="profile_social_posts">Posts</string>
+    <string name="profile_social_shares">Shares</string>
+    <string name="profile_social_friends">Friends</string>
+    <string name="profile_years">26 years old</string>
+    <string name="profile_email">rzknairb@gmail.com</string>
+    <string name="profile_location">Trujillo, Peru</string>
+    <string name="profile_occupation">Developer</string>
 </resources>

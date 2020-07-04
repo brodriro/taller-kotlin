@@ -1,3 +1,21 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="layout_normal_radius">30dp</dimen>
+    <dimen name="profile_title_size">18sp</dimen>
+    <dimen name="margin_profile_social_metrics">10dp</dimen>
+    <dimen name="profile_social_text_size">16sp</dimen>
+    <dimen name="profile_tags">16sp</dimen>
+    <dimen name="separator_height">36dp</dimen>
+    <dimen name="profile_margin_vertical">24dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="feed_username">18sp</dimen>
+    <dimen name="feed_description">16sp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="comment_imageview">48dp</dimen>
+    <dimen name="margin_horizontal_base">16dp</dimen>
+    <dimen name="comment_item_textsize">16sp</dimen>
+    <dimen name="margin_comment_item_row">8dp</dimen>
+    <dimen name="friends_image_dimen">68dp</dimen>
+    <dimen name="friends_item_name_textsize">18sp</dimen>
 </resources>
