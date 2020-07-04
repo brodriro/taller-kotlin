@@ -1,12 +1,11 @@
-package com.example.curso_kotlin
+package com.example.curso_kotlin.views
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.curso_kotlin.R
+import com.example.curso_kotlin.utils.mSharedPreferences
 
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.item_detail.*
@@ -63,7 +62,8 @@ class SecondActivity : AppCompatActivity() {
         dni = obtener(KEY_DNI)
         address = obtener(KEY_ADDRESS)*/
 
-        val mShared  = mSharedPreferences(this)
+        val mShared  =
+            mSharedPreferences(this)
         val session = mShared.getKey("session") ?: return null
 
         val sessionObj = JSONObject(session)

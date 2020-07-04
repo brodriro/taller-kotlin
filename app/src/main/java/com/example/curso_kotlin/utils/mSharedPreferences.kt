@@ -1,4 +1,4 @@
-package com.example.curso_kotlin
+package com.example.curso_kotlin.utils
 
 import android.content.Context
 import android.content.SharedPreferences

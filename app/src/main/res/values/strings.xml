@@ -28,4 +28,9 @@
     <string name="profile_email">rzknairb@gmail.com</string>
     <string name="profile_location">Trujillo, Peru</string>
     <string name="profile_occupation">Developer</string>
+    <string name="comment_item_example">commnet</string>
+    <string name="feed_username">Luke Korns</string>
+    <string name="feed_description">Amazing</string>
+    <string name="feed_item_like">16</string>
+    <string name="feed_item_comment">Comment</string>
 </resources>

@@ -1,8 +1,6 @@
-package com.example.curso_kotlin
+package com.example.curso_kotlin.views
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -10,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.curso_kotlin.PostActivity
+import com.example.curso_kotlin.R
+import com.example.curso_kotlin.utils.mSharedPreferences
 import com.example.curso_kotlin.network.Repository
 import com.example.curso_kotlin.network.UserResponse
 import com.squareup.picasso.Picasso
@@ -58,8 +59,8 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
 
             // Intent intent = new Intent(this, SecondActivity.class); <- Java
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("usuario", "Everis")
+            val intent = Intent(this, PostActivity::class.java)
+           // intent.putExtra("usuario", "Everis")
             startActivity(intent)
         }
 
