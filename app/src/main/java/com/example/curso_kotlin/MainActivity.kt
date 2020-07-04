@@ -10,11 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.curso_kotlin.network.Repository
+import com.example.curso_kotlin.network.UserResponse
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.item_detail.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import retrofit2.HttpException
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,6 +62,35 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra("usuario", "Everis")
             startActivity(intent)
+        }
+
+        callService()
+    }
+
+    private fun callService() {
+        val service = Repository.RetrofitRepository.getService()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response =  service.getProfile()
+
+            withContext(Dispatchers.Main) {
+                /**
+                 * Actualizar la interfaz grafica
+                 */
+                try {
+                    if(response.isSuccessful) {
+
+                        val user : UserResponse?  = response.body()
+                        if( user != null) {
+                            Toast.makeText(this@MainActivity, "Usuario: ${user.name} tiene ${user.social.friends} amigos", Toast.LENGTH_LONG).show()
+                        }
+                    }else{
+                        Toast.makeText(this@MainActivity, "Error ${response.code()}", Toast.LENGTH_LONG).show()
+                    }
+                }catch (e : HttpException) {
+                    Toast.makeText(this@MainActivity, "Error ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
