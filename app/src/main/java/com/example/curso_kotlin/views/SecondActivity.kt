@@ -66,7 +66,7 @@ class SecondActivity : AppCompatActivity() {
             mSharedPreferences(this)
         val session = mShared.getKey("session") ?: return null
 
-        val sessionObj = JSONObject(session)
+        val sessionObj : JSONObject = JSONObject(session)
 
         usuario = sessionObj.getString(KEY_USUARIO)
         password = sessionObj.getString(KEY_PASSWORD)
@@ -79,7 +79,7 @@ class SecondActivity : AppCompatActivity() {
         val user = User(
             usuario, password, dni, nombre, lastname, address
         )
-        /*val user = User(
+       /* val user = User(
             intent.getStringExtra(KEY_USUARIO),
             intent.getStringExtra(KEY_PASSWORD),
             intent.getStringExtra(KEY_DNI),

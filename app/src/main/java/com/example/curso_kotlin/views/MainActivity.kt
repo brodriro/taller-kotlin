@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     // val  => El valor se puede determinar en tiempo de ejecución
     // var => El valor se puede modificar en tiempo de ejecucion
 
+    var usuario : String? = null //COMPILACION
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,18 +39,17 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener{view ->
             if(et_username.text.toString() == "admin") {
-                val intent = Intent(this, FeedActivity::class.java)
-
-              /*  guardar(et_username.text.toString(), et_password.text.toString(),
+                val intent = Intent(this, SecondActivity::class.java)
+             /*   guardar(et_username.text.toString(), et_password.text.toString(),
                     "Brian", "Rodríguez",
                     "10020030", "Av. Peru #455")*/
-/*
+
                 intent.putExtra(SecondActivity.KEY_USUARIO, et_username.text.toString())
-                intent.putExtra(SecondActivity.KEY_PASSWORD, et_password.text.toString() )
+                intent.putExtra(SecondActivity.KEY_PASSWORD, et_password.text.toString())
                 intent.putExtra(SecondActivity.KEY_NAME, "Brian")
                 intent.putExtra(SecondActivity.KEY_LASTNAME, "Rodríguez")
                 intent.putExtra(SecondActivity.KEY_DNI, "10020030")
-                intent.putExtra(SecondActivity.KEY_ADDRESS, "Av. Peru 455")*/
+                intent.putExtra(SecondActivity.KEY_ADDRESS, "Av. Peru 455")
 
                 startActivity(intent)
             }else {
@@ -127,9 +127,6 @@ class MainActivity : AppCompatActivity() {
             "Brian", "Rodríguez",
             "10020030", "Av. Peru #455")
 
-       // val sharedPref = applicationContext.getSharedPreferences("CURSO_KOTLIN", Context.MODE_PRIVATE)
-       // val editor: SharedPreferences.Editor = sharedPref.edit()
-
        val sf = mSharedPreferences(this)
         sf.put(SecondActivity.KEY_USUARIO, usuario)
         sf.put(SecondActivity.KEY_PASSWORD, password)
@@ -138,14 +135,6 @@ class MainActivity : AppCompatActivity() {
         sf.put(SecondActivity.KEY_DNI, dni)
         sf.put(SecondActivity.KEY_ADDRESS, address)
         sf.save()
-
-       /* editor.putString(SecondActivity.KEY_USUARIO, usuario)
-        editor.putString(SecondActivity.KEY_PASSWORD, password)
-        editor.putString(SecondActivity.KEY_NAME, name)
-        editor.putString(SecondActivity.KEY_LASTNAME, lastname)
-        editor.putString(SecondActivity.KEY_DNI, dni)
-        editor.putString(SecondActivity.KEY_ADDRESS, address)
-        editor.commit()*/
     }
 
     override fun onStart() {
